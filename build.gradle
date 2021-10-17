@@ -1,0 +1,47 @@
+/*
+  Gradle Build file supports both Java and Scala
+  Usage:
+  - building: gradle build
+  - running: gradle run
+*/
+group 'com.nosto.puzzle'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'application'
+apply plugin: 'scala'
+
+mainClassName = "com.nosto.fun.game1.MainJFrame"
+
+repositories {
+  mavenCentral()
+  flatDir {
+    dirs 'lib'
+  }
+}
+
+sourceSets {
+  main {
+    scala {
+      srcDir 'src'
+    }
+  }
+}
+
+dependencies {
+  implementation name: 'swing-layout-1.0'
+  implementation group: 'org.scala-lang', name: 'scala-library', version: '2.12.10'
+}
+
+task srcDist(type: Tar) {
+    compression = Compression.GZIP
+    archiveFileName = "nostogame.tar.gz"
+    classifier = 'src'
+    from projectDir
+    include 'src/**/*'
+    include 'lib/**/*'
+    include 'build.xml'
+    include '*.gradle'
+    doLast {
+        println "Path to source distribution package: $archivePath.path"
+    }
+}
