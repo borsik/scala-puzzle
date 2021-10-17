@@ -36,6 +36,7 @@ public class MainJFrame extends javax.swing.JFrame {
         // It is commented out by default because old Ant build used for Java only implementations does not support
         // Scala code. To build puzzle including Scala code you need to use Gradle build.
         algorithms.addElement(new com.nosto.fun.game1.scala.RandomScalaOpponent("Thoughtless Scala Opponent"));
+        algorithms.addElement(new com.nosto.fun.olzhas.MinimaxScalaOpponent("Minimax Scala Opponent"));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(algorithms));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(algorithms));        
